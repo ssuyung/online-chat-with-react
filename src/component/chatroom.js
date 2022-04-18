@@ -1,8 +1,6 @@
 import React, { useReducer } from "react";
-import { BrowserRouter, Route, Routes} from "react-router-dom";
-import {Login} from "./src/component/login.js";
 
- class Example extends React.Component {
+export class Login extends React.Component {
     constructor(props) {
         super(props);
         console.log(this.props.isLoggedIn);
@@ -92,14 +90,3 @@ import {Login} from "./src/component/login.js";
         );
     }
 }
-
-ReactDOM.render((
-    <BrowserRouter>
-        <Routes>
-            <Route path="/" element={<Login/>}></Route>
-            <Route path="/chatroom" component={<Example />}></Route>
-        </Routes>
-    </BrowserRouter>
-),document.getElementById("example"));
-// ReactDOM.render(<Example/>, document.getElementById("example"));
-// console.log(document.getElementById("example").isLoggedIn);
