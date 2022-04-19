@@ -20,6 +20,7 @@ export class Login extends React.Component {
             var user = userCredential.user;
             console.log("User "+ user.email + " is signed in");
             this.setState({isLoggedIn: true});
+            location.replace("/#/chatroom");
         })
         .catch((error) =>{
             var errorCode = error.code;
