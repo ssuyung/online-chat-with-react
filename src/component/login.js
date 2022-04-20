@@ -25,6 +25,7 @@ export class Login extends React.Component {
         .catch((error) =>{
             var errorCode = error.code;
             console.log(error.message);
+            alert(error.message);
         })
 
     }
