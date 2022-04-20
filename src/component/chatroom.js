@@ -1,15 +1,15 @@
-import React, { useReducer } from "react";
+import React, { Component } from 'react';
 
-export class Chatroom extends React.Component {
-    constructor(props) {
-        super(props);
-        console.log("This is chatroom");
-    }
+export class Chatroom extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-
-    render(){
-        return(
-            <h1>Welcome to chatroom</h1>
-        );
-    }
+  render() {
+    return (
+      <div className="">
+        <h1>hello</h1>
+      </div>
+    );
+  }
 }

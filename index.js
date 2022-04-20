@@ -1,8 +1,8 @@
 import React, { useReducer } from "react";
 import { BrowserRouter, Route, Routes, HashRouter} from "react-router-dom";
 // import {hashHistory} from "react-router";
-import {Login} from "./src/component/login.js";
-import {Chatroom} from "./src/component/chatroom.js";
+import {Login} from "./src/component/Login.js";
+import {Chatroom} from "./src/component/Chatroom.js";
 
 
 ReactDOM.render((

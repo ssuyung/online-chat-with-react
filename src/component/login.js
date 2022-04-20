@@ -4,11 +4,11 @@ import React, { useReducer } from "react";
 export class Login extends React.Component {
     constructor(props) {
         super(props);
-        console.log(this.props.isLoggedIn);
+        // console.log(this.props.isLoggedIn);
         this.state = {
             isLoggedIn: false,
         };
-        console.log(this.state.isLoggedIn);
+        // console.log(this.state.isLoggedIn);
     }
 
     signIn(){
@@ -52,6 +52,7 @@ export class Login extends React.Component {
             var user = result.user;
             console.log("User "+user.email+" is signed in with Google");
             this.setState({isLoggedIn: true});
+            location.replace("/#/chatroom");
         })
         .catch(function(error){
             var errorCode = error.code;
