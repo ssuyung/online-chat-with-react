@@ -39,7 +39,10 @@ export class Login extends React.Component {
             // console.log(user);
             // console.log(user.email);
             console.log("User "+user.email+" is signed up");
-            firebase.database().ref('user_list').push(user.email);
+            var post_data ={
+                email: user.email,
+            }
+            firebase.database().ref('user_list').push(post_data);
         })
         .catch((error)=>{
             var errorCode = error.code;
