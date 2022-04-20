@@ -1,14 +1,20 @@
-import React, { Component } from 'react';
-
+import React from 'react';
+import {Button, TextField} from '../../node_modules/@material-ui/core/'
 export class Chatbox extends React.Component{
     constructor(props){
         super(props);
+        this.state={
+            user: firebase.auth().currentUser,
+        }
+        // console.log(this.state.user.email);
+        // console.log(this.state.user.name);
     }
 
     handleKeyDown(event){
         if(event.key==="Enter"){
             console.log("enter");
-      
+            // firebase.database().ref('com_list').push(post_data);
+            // post_txt.value = "";
         }
     }
     render(){

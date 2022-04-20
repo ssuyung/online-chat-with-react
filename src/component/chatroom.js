@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
+import {Button, TextField} from '../../node_modules/@material-ui/core'
 import {Chatbox} from "./Chatbox.js";
+
+const divStyle = {
+  display: "flex",
+}
+
 export class Chatroom extends Component {
   constructor(props) {
     super(props);
@@ -18,10 +24,13 @@ export class Chatroom extends Component {
   }
   handleKeydown(event){
     if(event.key==="Enter"){
-      console.log("enter");
-
+      // console.log("enter");
+      // console.log(event.target.value);
+      this.addNewChat(event.target.value);
     }
-    
+  }
+  addNewChat(email){
+    console.log(email);
   }
   render() {
     return (
@@ -29,9 +38,14 @@ export class Chatroom extends Component {
         <div className="center">
           <div className="contacts">
             <i className="fas fa-bars fa-2x"></i>
-            <h2>
-                Contacts
-            </h2>
+            <div style={divStyle}>
+            {/* <Button>New</Button> */}
+            <TextField id="new_chat" variant="outlined" label="New Conversation" onKeyDown={(event)=>{this.handleKeydown(event)}}></TextField>
+              <h2>
+                  Contacts
+              </h2>
+            
+            </div>
             <div className="contact">
                 <div className="pic rogers"></div>
                 <div className="badge">

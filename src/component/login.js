@@ -39,6 +39,7 @@ export class Login extends React.Component {
             // console.log(user);
             // console.log(user.email);
             console.log("User "+user.email+" is signed up");
+            firebase.database().ref('user_list').push(user.email);
         })
         .catch((error)=>{
             var errorCode = error.code;
@@ -60,6 +61,7 @@ export class Login extends React.Component {
             var errorMessage = error.Message;
             var email = error.email;
             var credential = error.credential;
+            alert(errorMessage);
             console.log(errorMessage);
         })
     }
@@ -70,7 +72,7 @@ export class Login extends React.Component {
                 { true && <p>hello</p>
 
                 }
-                { !this.state.isLoggedIn &&
+                
                 <div className="form-signin">
                     <img className="mb-4" src="./src/img/pic2-01.png" alt="" height="108"></img>
                     <h1 className="h3 mb-3 font-weight-normal">Please sign in/register</h1>
@@ -88,7 +90,7 @@ export class Login extends React.Component {
                     <button className="btn btn-lg btn-info btn-block" id="btngoogle" onClick={()=>this.signInWithGoogle()}>Sign in with Google</button>
                     <button className="btn btn-lg btn-secondary btn-block" id="btnSignUp" onClick={()=>this.signUp()}>New account</button>
                 </div>
-                }
+                
 
             </div>
         );
