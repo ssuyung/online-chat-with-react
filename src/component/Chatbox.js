@@ -3,12 +3,12 @@ import {Button, TextField} from '../../node_modules/@material-ui/core/'
 import { Message } from './Message';
 
 var encodeUserEmail = (userEmail) =>{
-    if(userEmail) return userEmail.replace(".", ",");
+    if(userEmail) return userEmail.replace(/\./g, ",");
     else return "";
 }
   
 var decodeUserEmail = (userEmail) =>{
-    return userEmail.replace(",", ".");
+    return userEmail.replace(/\./g, ".");
 }
 export class Chatbox extends React.Component{
     constructor(props){

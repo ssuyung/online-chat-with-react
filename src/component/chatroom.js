@@ -8,11 +8,11 @@ const divStyle = {
 }
 
 var encodeUserEmail = (userEmail) =>{
-  return userEmail.replace(".", ",");
+  return userEmail.replace(/\./g, ",");
 }
 
 var decodeUserEmail = (userEmail) =>{
-  return userEmail.replace(",", ".");
+  return userEmail.replace(/\./g, ".");
 }
 
 export class Chatroom extends Component {
