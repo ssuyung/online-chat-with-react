@@ -10,6 +10,31 @@ var encodeUserEmail = (userEmail) =>{
 var decodeUserEmail = (userEmail) =>{
     return userEmail.replace(/\./g, ".");
 }
+function notifyMe() {
+    // Let's check if the browser supports notifications
+    if (!("Notification" in window)) {
+        alert("This browser does not support desktop notification");
+    }
+
+    // Let's check whether notification permissions have already been granted
+    else if (Notification.permission === "granted") {
+        // If it's okay let's create a notification
+        var notification = new Notification("Hi there!");
+    }
+
+    // Otherwise, we need to ask the user for permission
+    else if (Notification.permission !== "denied") {
+        Notification.requestPermission().then(function (permission) {
+        // If the user accepts, let's create a notification
+        if (permission === "granted") {
+            var notification = new Notification("Hi there!");
+        }
+        });
+    }
+
+    // At last, if the user has denied notifications, and you
+    // want to be respectful there is no need to bother them anymore.
+}
 export class Chatbox extends React.Component{
     constructor(props){
         super(props);
@@ -43,7 +68,8 @@ export class Chatbox extends React.Component{
             firebase.database().ref("chat_history/"+encoded_sender_email+"/"+encoded_receiver_email+"/messages").on("child_added", function(snapshot){
                 if(snapshot.val()){
                     messageHistory.push(snapshot.val());
-                    console.log(snapshot.val());
+                    // console.log(snapshot.val());
+                    // notifyMe();
                     handle.setState({message_history: messageHistory});
                 }
             })

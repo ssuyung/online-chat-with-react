@@ -8,11 +8,37 @@ const divStyle = {
 }
 
 var encodeUserEmail = (userEmail) =>{
-  return userEmail.replace(".", ",");
+  return userEmail.replace(/\./g, ",");
 }
 
 var decodeUserEmail = (userEmail) =>{
-  return userEmail.replace(",", ".");
+  return userEmail.replace(/\./g, ".");
+}
+
+function notifyMe() {
+  // Let's check if the browser supports notifications
+  if (!("Notification" in window)) {
+      alert("This browser does not support desktop notification");
+  }
+
+  // Let's check whether notification permissions have already been granted
+  else if (Notification.permission === "granted") {
+      // If it's okay let's create a notification
+      var notification = new Notification("You have a new conversation!");
+  }
+
+  // Otherwise, we need to ask the user for permission
+  else if (Notification.permission !== "denied") {
+      Notification.requestPermission().then(function (permission) {
+      // If the user accepts, let's create a notification
+      if (permission === "granted") {
+          var notification = new Notification("You have a new conversation!");
+      }
+      });
+  }
+
+  // At last, if the user has denied notifications, and you
+  // want to be respectful there is no need to bother them anymore.
 }
 
 export class Chatroom extends Component {
@@ -25,6 +51,10 @@ export class Chatroom extends Component {
       console.log("you are not logged in");
       location.replace("./");
     }
+    this.state={
+      user: _user,
+      construct_timestamp: Date.now(),
+    }
     let handle = this;
     let contact_history=[];
     let encoded_user_email = encodeUserEmail(_user.email);
@@ -35,12 +65,22 @@ export class Chatroom extends Component {
         cur_chat_email: snapshot.val().info.contact_email,
       })
       console.log("cur_chat_email: " + handle.state.cur_chat_email);
+      if(snapshot.val().info.timestamp){
+        if(snapshot.val().info.timestamp > handle.state.construct_timestamp){
+          // console.log("new chat");
+          notifyMe();
+        }
+      }
       handle.forceUpdate();
     });
+
+    // firebase.database().ref("chat_history/"+encoded_user_email).orderByChild('timestamp').startAt(Date.now()).on('child_added', function(snapthot){
+    //   console.log("new chat: "+snapthot.val());
+    // })
+    // firebase.database().ref("chat_history/"+encoded_user_email).limitToLast(1).on("child_added", function(snapshot){
+    //   console.log(snapshot.val)
+    // });
     
-    this.state={
-      user: _user,
-    }
     // this.handleChangeChat.bind(this);
     // this.addNewChat=this.addNewChat.bind(this);
     
@@ -63,6 +103,7 @@ export class Chatroom extends Component {
     }
   }
   addNewChat(email){
+    // console.log(Date.now());
     var database_ref = firebase.database();
     var handle = this;
     database_ref.ref("user_list").orderByChild("email").equalTo(email).once("value").then(function(snapshot){
@@ -78,10 +119,12 @@ export class Chatroom extends Component {
           else{
             firebase.database().ref('chat_history/'+encoded_user_email+'/'+encoded_contact_email+"/info").set({
               contact_email: email,
+              timestamp: Date.now(),
               exist: true,
             });
             firebase.database().ref('chat_history/'+encoded_contact_email+'/'+encoded_user_email+"/info").set({
               contact_email: handle.state.user.email,
+              timestamp: Date.now(),
               exist: true,
             });
           }
@@ -111,7 +154,7 @@ export class Chatroom extends Component {
               </h2>
             
             </div>
-            <div className="contact">
+            {/* <div className="contact">
                 <div className="pic rogers"></div>
                 <div className="badge">
                 14
@@ -122,7 +165,7 @@ export class Chatroom extends Component {
                 <div className="message">
                 That is America's ass 🇺🇸🍑
                 </div>
-            </div>
+            </div> */}
             {history?.map((history_item)=>{
               return(
                 <Contact
@@ -133,7 +176,7 @@ export class Chatroom extends Component {
               )
             })
             }
-
+            <p>test</p>
           </div>
 
           <Chatbox

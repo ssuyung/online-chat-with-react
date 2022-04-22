@@ -9,7 +9,7 @@ export class Contact extends React.Component{
     //     if (this.props.email !== prevProps.email) {
     //         this.forceUpdate();
     //     }
-    // }
+    // 
     render(){
         return(
             <div className="contact" onClick={()=>this.props.onClick(this.props.email)}>

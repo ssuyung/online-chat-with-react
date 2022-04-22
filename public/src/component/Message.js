@@ -3,8 +3,8 @@ import React from "react";
 export class Message extends React.Component{
     constructor(props){
         super(props);
-        console.log(this.props.fromMe);
-        console.log(this.props.message);
+        // console.log(this.props.fromMe);
+        // console.log(this.props.message);
     }
     render(){
         return(
