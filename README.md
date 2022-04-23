@@ -64,6 +64,11 @@ HTML tags won't have effect on the chat.
 
     https://chatroom-687cb.web.app/
 
+### Reference/Credit
+
+The layout and css is referenced by
+    https://codepen.io/mubangadv/pen/rXrOQa
+
 ### Others (Optional)
 
     Anything you want to say to TAs.
