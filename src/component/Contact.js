@@ -1,5 +1,5 @@
 import React from "react";
-
+// import default_image from "../img/default_user.png"
 export class Contact extends React.Component{
     constructor(props){
         super(props);
@@ -13,7 +13,7 @@ export class Contact extends React.Component{
     render(){
         return(
             <div className="contact" onClick={()=>this.props.onClick(this.props.email)}>
-                <div className="pic"></div>
+                <div className="pic" src="./src/img/default_user.png"></div>
                 <div className="name">
                     {this.props.email}
                 </div>

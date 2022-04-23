@@ -99,36 +99,42 @@ export class Chatbox extends React.Component{
     }
     render(){
         return(
-            <div className="chat">
-                <div className="contact bar">
-                    <div className="pic stark"></div>
-                    <div className="name">
-                    {this.props.email}
+            // <div className="container">
+            //     <div className="row">
+            //         <div className="col-md-8 col-4">
+                    <div className="chat">
+                        <div className="contact bar">
+                            <div className="pic stark"></div>
+                            <div className="name">
+                            {this.props.email}
+                            </div>
+                            {/* <div className="seen">
+                            Today at 12:56
+                            </div> */}
+                        </div>
+                        <div className="messages" id="chat">
+                            {/* <div className="time">
+                            Today at 11:41
+                            </div> */}
+                            
+                            {this.state.message_history?.map((msg, index)=>{
+                                return(
+                                    <Message         
+                                        key={index}
+                                        fromMe={msg.fromMe}
+                                        message={msg.message}
+                                    />
+                                )
+                            })
+                            }
+                        </div>
+                        <div className="input">
+                            <i className="fas fa-camera"></i><i className="far fa-laugh-beam"></i><input onKeyDown={(event)=>{this.handleKeyDown(event)}} placeholder="Type your message here!" type="text" /><i className="fas fa-microphone"></i>
+                        </div>
                     </div>
-                    {/* <div className="seen">
-                    Today at 12:56
-                    </div> */}
-                </div>
-                <div className="messages" id="chat">
-                    {/* <div className="time">
-                    Today at 11:41
-                    </div> */}
-                    
-                    {this.state.message_history?.map((msg, index)=>{
-                        return(
-                            <Message         
-                                key={index}
-                                fromMe={msg.fromMe}
-                                message={msg.message}
-                            />
-                        )
-                    })
-                    }
-                </div>
-                <div className="input">
-                    <i className="fas fa-camera"></i><i className="far fa-laugh-beam"></i><input onKeyDown={(event)=>{this.handleKeyDown(event)}} placeholder="Type your message here!" type="text" /><i className="fas fa-microphone"></i>
-                </div>
-            </div>
+            //         </div>
+            //     </div>
+            // </div>
         )
     }
 }

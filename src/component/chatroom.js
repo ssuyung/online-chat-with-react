@@ -121,6 +121,7 @@ export class Chatroom extends Component {
   }
   render() {
     const history = this.state.chatHistory;
+    
     return (
       <div>
         <div className="center">
@@ -128,9 +129,9 @@ export class Chatroom extends Component {
             <i className="fas fa-bars fa-2x"></i>
             <div style={divStyle}>
             <TextField id="new_chat" variant="outlined" label="New Conversation" onKeyDown={(event)=>{this.handleKeydown(event)}}></TextField>
-              <h2>
+              {/* <h2>
                   Contacts
-              </h2>
+              </h2> */}
             
             </div>
             {history?.map((history_item)=>{
@@ -150,6 +151,28 @@ export class Chatroom extends Component {
           />
           
         </div>
+        {/* <div className="container">
+			<div className="row" id="photo-gallery">
+			  	<div className="col-lg-3 col-md-6 col-sm-12 photo-column">
+					<div className="photo-sm">
+						<img src="./Image_created_with_a_mobile_phone.png"/>
+					</div>
+					<div className="photo-big"></div>
+				</div>
+				<div className="col-lg-3 col-md-6 col-sm-12 photo-column">
+					<div className="photo-big"></div>
+					<div className="photo-sm"></div>
+				</div>
+				<div className="col-lg-3 col-md-6 col-sm-12 photo-column">
+					<div className="photo-sm"></div>
+					<div className="photo-big"></div>
+				</div>
+				<div className="col-lg-3 col-md-6 col-sm-12 photo-column">
+					<div className="photo-big"></div>
+					<div className="photo-sm"></div>
+				</div>
+			</div>
+		  </div> */}
       </div>
     );
   }
