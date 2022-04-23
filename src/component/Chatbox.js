@@ -78,9 +78,9 @@ export class Chatbox extends React.Component{
         }
     }
     handleKeyDown(event){
-        if(event.key==="Enter"){
-            console.log("enter");
-            console.log(event.target.value);
+        if(event.key==="Enter" && this.props.email){
+            // console.log("enter");
+            // console.log(event.target.value);
             var message = {
                 fromMe: true,
                 message: event.target.value,

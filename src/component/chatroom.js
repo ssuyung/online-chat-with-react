@@ -73,30 +73,8 @@ export class Chatroom extends Component {
       }
       handle.forceUpdate();
     });
-
-    // firebase.database().ref("chat_history/"+encoded_user_email).orderByChild('timestamp').startAt(Date.now()).on('child_added', function(snapthot){
-    //   console.log("new chat: "+snapthot.val());
-    // })
-    // firebase.database().ref("chat_history/"+encoded_user_email).limitToLast(1).on("child_added", function(snapshot){
-    //   console.log(snapshot.val)
-    // });
-    
-    // this.handleChangeChat.bind(this);
-    // this.addNewChat=this.addNewChat.bind(this);
-    
-    // var ListRef = firebase.database().ref('com_list');
-    // ListRef.on('child_added', function(snapshot){
-    //     // console.log(snapshot.val());
-    //     show_post(snapshot.val());
-    // });
-    
-
-  }
-  show_post(post_data){
-    // total_post[total_post.length] = str_before_username + post_data.email + "</strong>" + post_data.data + str_after_content
-    // document.getElementById('post_list').innerHTML = total_post.join('');
-    // console.log(post_data);
-  }
+    console.log("user_uid: " +this.state.user.uid);
+   }
   handleKeydown(event){
     if(event.key==="Enter"){
       this.addNewChat(event.target.value);
@@ -119,11 +97,13 @@ export class Chatroom extends Component {
           else{
             firebase.database().ref('chat_history/'+encoded_user_email+'/'+encoded_contact_email+"/info").set({
               contact_email: email,
+              sender_email: handle.state.user.email,
               timestamp: Date.now(),
               exist: true,
             });
             firebase.database().ref('chat_history/'+encoded_contact_email+'/'+encoded_user_email+"/info").set({
               contact_email: handle.state.user.email,
+              sender_email: email,
               timestamp: Date.now(),
               exist: true,
             });
@@ -154,18 +134,6 @@ export class Chatroom extends Component {
               </h2>
             
             </div>
-            {/* <div className="contact">
-                <div className="pic rogers"></div>
-                <div className="badge">
-                14
-                </div>
-                <div className="name">
-                Steve Rogers
-                </div>
-                <div className="message">
-                That is America's ass 🇺🇸🍑
-                </div>
-            </div> */}
             {history?.map((history_item)=>{
               return(
                 <Contact
