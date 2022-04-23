@@ -43,6 +43,7 @@ export class Login extends React.Component {
                 email: user.email,
             }
             firebase.database().ref('user_list').push(post_data);
+            alert("User "+user.email+"is signed up, please sign in again!");
         })
         .catch((error)=>{
             var errorCode = error.code;
