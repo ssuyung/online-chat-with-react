@@ -19,7 +19,7 @@ export class Login extends React.Component {
         .then((userCredential) =>{
             var user = userCredential.user;
             console.log("User "+ user.email + " is signed in");
-            this.setState({isLoggedIn: true});
+            // this.setState({isLoggedIn: true});
             location.replace("/#/chatroom");
         })
         .catch((error) =>{
@@ -56,7 +56,7 @@ export class Login extends React.Component {
             var token = result.credential.accessToken;
             var user = result.user;
             console.log("User "+user.email+" is signed in with Google");
-            this.setState({isLoggedIn: true});
+            // this.setState({isLoggedIn: true});
             location.replace("/#/chatroom");
         })
         .catch(function(error){
@@ -66,6 +66,8 @@ export class Login extends React.Component {
             var credential = error.credential;
             alert(errorMessage);
             console.log(errorMessage);
+            console.log(errorCode);
+            console.log(credential);
         })
     }
     render(){

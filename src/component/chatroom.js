@@ -144,7 +144,6 @@ export class Chatroom extends Component {
               )
             })
             }
-            <p>test</p>
           </div>
 
           <Chatbox

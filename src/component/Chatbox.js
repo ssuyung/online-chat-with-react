@@ -105,14 +105,14 @@ export class Chatbox extends React.Component{
                     <div className="name">
                     {this.props.email}
                     </div>
-                    <div className="seen">
+                    {/* <div className="seen">
                     Today at 12:56
-                    </div>
+                    </div> */}
                 </div>
                 <div className="messages" id="chat">
-                    <div className="time">
+                    {/* <div className="time">
                     Today at 11:41
-                    </div>
+                    </div> */}
                     
                     {this.state.message_history?.map((msg, index)=>{
                         return(
