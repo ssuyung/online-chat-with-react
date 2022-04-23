@@ -1,5 +1,14 @@
 {
   "rules": {
+    "chat_history": {
+      "$key1":{
+        "$key2":{
+          ".read": "auth != null && (!data.exists() || data.child('info').child('contact_email').val()==auth.email || data.child('info').child('sender_email').val()==auth.email)",
+          ".write": "true",
+          // ".read": "true",
+        }
+      }
+    },
     ".read": "now < 1652803200000",  // 2022-5-18
     ".write": "now < 1652803200000",  // 2022-5-18
   }
