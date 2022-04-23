@@ -127,7 +127,6 @@ export class Chatroom extends Component {
           <div className="contacts">
             <i className="fas fa-bars fa-2x"></i>
             <div style={divStyle}>
-            {/* <Button>New</Button> */}
             <TextField id="new_chat" variant="outlined" label="New Conversation" onKeyDown={(event)=>{this.handleKeydown(event)}}></TextField>
               <h2>
                   Contacts
@@ -149,6 +148,7 @@ export class Chatroom extends Component {
           <Chatbox
             email={this.state.cur_chat_email}
           />
+          
         </div>
       </div>
     );
