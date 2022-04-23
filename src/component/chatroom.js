@@ -119,11 +119,23 @@ export class Chatroom extends Component {
     console.log("currenct chat changed to "+email);
     this.setState({cur_chat_email: email});
   }
+  onFileChange = event => { 
+    firebase.storage().ref().child("user_profile_image/"+encodeUserEmail(firebase.auth().currentUser.email)).put(event.target.files[0])
+    .then((snapshot)=>{
+      console.log("uploaded "+event.target.files[0]);
+    })
+    // Update the state 
+    // this.setState({ selectedFile: event.target.files[0] }); 
+  }; 
+
   render() {
     const history = this.state.chatHistory;
     
     return (
       <div>
+        {/* <div style={{height: "100px"}}>
+          <Button>profile photo</Button>
+        </div> */}
         <div className="center">
           <div className="contacts">
             <i className="fas fa-bars fa-2x"></i>
@@ -132,7 +144,12 @@ export class Chatroom extends Component {
               {/* <h2>
                   Contacts
               </h2> */}
-            
+            <div> 
+                <input type="file" onChange={this.onFileChange} /> 
+                <button onClick={this.onFileUpload}> 
+                  Upload! 
+                </button> 
+            </div> 
             </div>
             {history?.map((history_item)=>{
               return(
@@ -151,28 +168,6 @@ export class Chatroom extends Component {
           />
           
         </div>
-        {/* <div className="container">
-			<div className="row" id="photo-gallery">
-			  	<div className="col-lg-3 col-md-6 col-sm-12 photo-column">
-					<div className="photo-sm">
-						<img src="./Image_created_with_a_mobile_phone.png"/>
-					</div>
-					<div className="photo-big"></div>
-				</div>
-				<div className="col-lg-3 col-md-6 col-sm-12 photo-column">
-					<div className="photo-big"></div>
-					<div className="photo-sm"></div>
-				</div>
-				<div className="col-lg-3 col-md-6 col-sm-12 photo-column">
-					<div className="photo-sm"></div>
-					<div className="photo-big"></div>
-				</div>
-				<div className="col-lg-3 col-md-6 col-sm-12 photo-column">
-					<div className="photo-big"></div>
-					<div className="photo-sm"></div>
-				</div>
-			</div>
-		  </div> */}
       </div>
     );
   }

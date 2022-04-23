@@ -73,30 +73,8 @@ export class Chatroom extends Component {
       }
       handle.forceUpdate();
     });
-
-    // firebase.database().ref("chat_history/"+encoded_user_email).orderByChild('timestamp').startAt(Date.now()).on('child_added', function(snapthot){
-    //   console.log("new chat: "+snapthot.val());
-    // })
-    // firebase.database().ref("chat_history/"+encoded_user_email).limitToLast(1).on("child_added", function(snapshot){
-    //   console.log(snapshot.val)
-    // });
-    
-    // this.handleChangeChat.bind(this);
-    // this.addNewChat=this.addNewChat.bind(this);
-    
-    // var ListRef = firebase.database().ref('com_list');
-    // ListRef.on('child_added', function(snapshot){
-    //     // console.log(snapshot.val());
-    //     show_post(snapshot.val());
-    // });
-    
-
-  }
-  show_post(post_data){
-    // total_post[total_post.length] = str_before_username + post_data.email + "</strong>" + post_data.data + str_after_content
-    // document.getElementById('post_list').innerHTML = total_post.join('');
-    // console.log(post_data);
-  }
+    console.log("user_uid: " +this.state.user.uid);
+   }
   handleKeydown(event){
     if(event.key==="Enter"){
       this.addNewChat(event.target.value);
@@ -119,11 +97,13 @@ export class Chatroom extends Component {
           else{
             firebase.database().ref('chat_history/'+encoded_user_email+'/'+encoded_contact_email+"/info").set({
               contact_email: email,
+              sender_email: handle.state.user.email,
               timestamp: Date.now(),
               exist: true,
             });
             firebase.database().ref('chat_history/'+encoded_contact_email+'/'+encoded_user_email+"/info").set({
               contact_email: handle.state.user.email,
+              sender_email: email,
               timestamp: Date.now(),
               exist: true,
             });
@@ -139,33 +119,38 @@ export class Chatroom extends Component {
     console.log("currenct chat changed to "+email);
     this.setState({cur_chat_email: email});
   }
+  onFileChange = event => { 
+    firebase.storage().ref().child("user_profile_image/"+encodeUserEmail(firebase.auth().currentUser.email)).put(event.target.files[0])
+    .then((snapshot)=>{
+      console.log("uploaded "+event.target.files[0]);
+    })
+    // Update the state 
+    // this.setState({ selectedFile: event.target.files[0] }); 
+  }; 
+
   render() {
     const history = this.state.chatHistory;
+    
     return (
       <div>
+        {/* <div style={{height: "100px"}}>
+          <Button>profile photo</Button>
+        </div> */}
         <div className="center">
           <div className="contacts">
             <i className="fas fa-bars fa-2x"></i>
             <div style={divStyle}>
-            {/* <Button>New</Button> */}
             <TextField id="new_chat" variant="outlined" label="New Conversation" onKeyDown={(event)=>{this.handleKeydown(event)}}></TextField>
-              <h2>
+              {/* <h2>
                   Contacts
-              </h2>
-            
+              </h2> */}
+            <div> 
+                <input type="file" onChange={this.onFileChange} /> 
+                <button onClick={this.onFileUpload}> 
+                  Upload! 
+                </button> 
+            </div> 
             </div>
-            {/* <div className="contact">
-                <div className="pic rogers"></div>
-                <div className="badge">
-                14
-                </div>
-                <div className="name">
-                Steve Rogers
-                </div>
-                <div className="message">
-                That is America's ass 🇺🇸🍑
-                </div>
-            </div> */}
             {history?.map((history_item)=>{
               return(
                 <Contact
@@ -176,12 +161,12 @@ export class Chatroom extends Component {
               )
             })
             }
-            <p>test</p>
           </div>
 
           <Chatbox
             email={this.state.cur_chat_email}
           />
+          
         </div>
       </div>
     );

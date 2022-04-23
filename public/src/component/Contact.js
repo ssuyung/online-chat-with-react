@@ -1,5 +1,13 @@
 import React from "react";
+// import default_image from "../img/default_user.png"
 
+var encodeUserEmail = (userEmail) =>{
+    return userEmail.replace(/\./g, ",");
+}
+
+var decodeUserEmail = (userEmail) =>{
+    return userEmail.replace(/\./g, ".");
+}
 export class Contact extends React.Component{
     constructor(props){
         super(props);
@@ -11,6 +19,14 @@ export class Contact extends React.Component{
     //     }
     // 
     render(){
+        // var user_profile_url;
+        // firebase.storage().ref().child("user_profile_image/"+encodeUserEmail(this.props.email)).getDownloadURL().then(function(url){
+        //     user_profile_url=url;
+        //     console.log(url);
+        // })
+        // .catch(function(error){
+        //     user_profile_url="./src/img/default_user.png";
+        // });
         return(
             <div className="contact" onClick={()=>this.props.onClick(this.props.email)}>
                 <div className="pic"></div>
