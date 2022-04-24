@@ -146,9 +146,6 @@ export class Chatroom extends Component {
               </h2> */}
             <div> 
                 <input type="file" onChange={this.onFileChange} /> 
-                <button onClick={this.onFileUpload}> 
-                  Upload! 
-                </button> 
             </div> 
             </div>
             {history?.map((history_item)=>{

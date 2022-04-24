@@ -40,7 +40,25 @@ export class Chatbox extends React.Component{
         super(props);
         this.state={
             user: firebase.auth().currentUser,
+            url_updated: false,
+            // user_profile_url: "./src/img/default_user.png",
         }
+        
+        // console.log("hi");
+        // var handle=this;
+        // console.log(this.props.email);
+        // console.log("loading from user_profile_image/"+encodeUserEmail(this.props.email));
+        // firebase.storage().ref().child("user_profile_image/"+encodeUserEmail(this.props.email)).getDownloadURL().then(function(url){
+        //     handle.setState({
+        //         user_profile_url: url,
+        //     });
+        //     // console.log(url);
+        //     console.log("user imgae url: "+handle.state.user_profile_url);
+        //     // handle.forceUpdate();
+        // })
+        // .catch(function(error){
+        //     console.log(error.message);
+        // });
         // var encoded_sender_email = encodeUserEmail(this.state.user.email);
         // var encoded_receiver_email = encodeUserEmail(this.props.email);
         // var messageHistory = [];
@@ -76,6 +94,7 @@ export class Chatbox extends React.Component{
             console.log("reload message");
             // this.forceUpdate();
         }
+        
     }
     handleKeyDown(event){
         if(event.key==="Enter" && this.props.email){
@@ -104,7 +123,9 @@ export class Chatbox extends React.Component{
             //         <div className="col-md-8 col-4">
                     <div className="chat">
                         <div className="contact bar">
-                            <div className="pic stark"></div>
+                            {/* <div>
+                                <img className="pic" src={user_profile_url}></img>
+                            </div> */}
                             <div className="name">
                             {this.props.email}
                             </div>
