@@ -32,9 +32,10 @@
 
 First sign up with email and password, or log in with Google. If the sign-up is successful, you need to log in manually again. If first sign up with gmail, then log in with Google with the same email account, you'll have to log in with Google in the future.
     
-![image](https://user-images.githubusercontent.com/39045469/164911677-afdc415f-c9cc-463c-8481-56ee01f90af4.png)
 
-On top left you can enter other users' email and hit enter to start a conversation with them. On top you can select image to upload to storage, but the feature to show it is still yet to be developed.
+![Inked擷取_LI](https://user-images.githubusercontent.com/39045469/164971885-2dbf4b0b-3410-4a4c-9cec-c5133a11123b.jpg)
+
+On top left you can enter other users' email and hit enter to start a conversation with them. On top you can select image to upload to storage and it will be seen by your friends on their contact bar. 
 On the left is the sidebar of all conversations. Click on any of them to change the chatbox.
 On the right is the chatbox, type in message in the input bar and hit enter to send the message.
 
@@ -62,16 +63,15 @@ HTML tags won't have effect on the chat.
 
 ### Firebase page link
 
-    https://chatroom-687cb.web.app/
+https://chatroom-687cb.web.app/
 
 ### Reference/Credit
 
 The layout and css is referenced by
     https://codepen.io/mubangadv/pen/rXrOQa
 
-### Others (Optional)
 
-    Anything you want to say to TAs.
+
 
 <style>
 table th{
